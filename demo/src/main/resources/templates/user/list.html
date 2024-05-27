@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>LIST</title>
+</head>
+<body>
+	<table>
+		<tr>
+			<th>id</th>
+			<th>userEmail</th>
+			<th>userPassword</th>
+			<th>userName</th>
+			<th>상세조회</th>
+			<th>삭제</th>
+		</tr>
+		<tr th:each="user:${userList}">
+			<td th:text="${user.id}"></td>
+			<td th:text="${user.userEmail}"></td>
+			<td th:text="${user.userPassword}"></td>
+			<td th:text="${user.userName}"></td>
+			<td>
+				<!-- 
+					a 태그는 HTTP 통신 GET 
+					query string -> /user?id=1
+					rest api ->  /user/1
+				-->
+				<a th:href="@{|/user/${user.id}|}">조회</a>
+			</td>
+			<td>
+				<a th:href="@{/user/delete/${user.id}}">삭제</a>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>
